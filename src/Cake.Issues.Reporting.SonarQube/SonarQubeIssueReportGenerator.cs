@@ -1,6 +1,8 @@
 ﻿namespace Cake.Issues.Reporting.SonarQube
 {
     using System.Collections.Generic;
+    using System.IO;
+    using System.Runtime.Serialization.Json;
     using Cake.Core.Diagnostics;
     using Cake.Core.IO;
 
@@ -29,8 +31,14 @@
         {
             this.Log.Information("Creating report '{0}'", this.Settings.OutputFilePath.FullPath);
 
-            // TODO Implement
-            return null;
+            var jsonSerializer = new DataContractJsonSerializer(typeof(GenericIssueData));
+
+            using (var stream = File.Create(this.Settings.OutputFilePath.FullPath))
+            {
+                jsonSerializer.WriteObject(stream, new GenericIssueData(issues));
+            }
+
+            return this.Settings.OutputFilePath.FullPath;
         }
     }
 }
