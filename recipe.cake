@@ -1,4 +1,4 @@
-#load nuget:?package=Cake.Recipe&version=1.1.1
+#load nuget:?package=Cake.Recipe&version=2.2.0
 
 Environment.SetVariableNames();
 
@@ -10,9 +10,10 @@ BuildParameters.SetParameters(
     repositoryOwner: "cake-contrib",
     repositoryName: "Cake.Issues.Reporting.SonarQube",
     appVeyorAccountName: "cakecontrib",
-    shouldGenerateDocumentation: false,
-    shouldRunCodecov: false,
-    shouldRunGitVersion: true);
+    shouldRunDotNetCorePack: true,
+    shouldRunDupFinder: false,
+    shouldRunInspectCode: false,
+    preferredBuildProviderType: BuildProviderType.GitHubActions);
 
 BuildParameters.PrintParameters(Context);
 
