@@ -1,4 +1,5 @@
 #load nuget:?package=Cake.Recipe&version=2.2.1
+#addin nuget:?package=Cake.Git&version=1.1.0
 
 Environment.SetVariableNames();
 
